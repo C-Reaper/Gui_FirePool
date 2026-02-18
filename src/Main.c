@@ -20,13 +20,17 @@ void Resize(AlxWindow* w){
 	FirePool_Resize(&wrp,w->Width,w->Height);
 }
 void Setup(AlxWindow* w){
-	wrp = FirePool_New(w->Width,w->Height,0.9f);
+	wrp = FirePool_New(w->Width,w->Height,1.0f);
 	Resize(w);
 }
 void Update(AlxWindow* w){
 	if(Stroke(ALX_MOUSE_L).DOWN){
 		FirePool_Interact(&wrp,w->MouseX,w->MouseY,100.0f);
 	}
+
+	FirePool_Fire(&wrp,wrp.h - (1 + 5),5);
+	wrp.speedy = 1.0f;
+	FirePool_Update(&wrp);
 
 	Clear(BLACK);
 
