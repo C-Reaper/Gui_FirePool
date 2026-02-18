@@ -15,31 +15,31 @@
 
 
 const int count = 100;
-FirePool wrp;
+FirePool fp;
 
 void Resize(AlxWindow* w){
-	FirePool_Resize(&wrp,w->Width,w->Height);
+	FirePool_Resize(&fp,w->Width,w->Height);
 }
 void Setup(AlxWindow* w){
-	wrp = FirePool_New(w->Width,w->Height,1.0f,0.1f);
+	fp = FirePool_New(w->Width,w->Height,1.0f,0.1f);
 	Resize(w);
 }
 void Update(AlxWindow* w){
 	if(Stroke(ALX_MOUSE_L).DOWN){
-		FirePool_Interact(&wrp,w->MouseX,w->MouseY,100.0f);
+		FirePool_Interact(&fp,w->MouseX,w->MouseY,100.0f);
 	}
 
-	FirePool_Fire(&wrp,wrp.h - (1 + count),count);
-	wrp.speedy = 100.0f * w->ElapsedTime;
+	FirePool_Fire(&fp,fp.h - (1 + count),count);
+	fp.speedy = 100.0f * w->ElapsedTime;
 	
-	FirePool_Update(&wrp);
+	FirePool_Update(&fp);
 
 	Clear(BLACK);
 
-	FirePool_Render(&wrp,WINDOW_STD_ARGS,0.0f,0.0f);
+	FirePool_Render(&fp,WINDOW_STD_ARGS,0.0f,0.0f);
 }
 void Delete(AlxWindow* w){
-	FirePool_Free(&wrp);
+	FirePool_Free(&fp);
 }
 
 int main(){
