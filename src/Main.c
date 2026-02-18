@@ -14,13 +14,14 @@
 #endif
 
 
+const int count = 100;
 FirePool wrp;
 
 void Resize(AlxWindow* w){
 	FirePool_Resize(&wrp,w->Width,w->Height);
 }
 void Setup(AlxWindow* w){
-	wrp = FirePool_New(w->Width,w->Height,1.0f);
+	wrp = FirePool_New(w->Width,w->Height,1.0f,0.1f);
 	Resize(w);
 }
 void Update(AlxWindow* w){
@@ -28,8 +29,9 @@ void Update(AlxWindow* w){
 		FirePool_Interact(&wrp,w->MouseX,w->MouseY,100.0f);
 	}
 
-	FirePool_Fire(&wrp,wrp.h - (1 + 5),5);
-	wrp.speedy = 1.0f;
+	FirePool_Fire(&wrp,wrp.h - (1 + count),count);
+	wrp.speedy = 100.0f * w->ElapsedTime;
+	
 	FirePool_Update(&wrp);
 
 	Clear(BLACK);
