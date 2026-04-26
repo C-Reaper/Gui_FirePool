@@ -1,193 +1,107 @@
-# Gui_FirePool
+# Project README
 
+## Overview
+This project is a simple fire pool simulation built using C/C++. The application creates a window and simulates a fire effect based on mouse interactions.
 
-## Project Overview
+## Features
+- Real-time fire simulation.
+- Mouse interaction to add "fire" at the cursor position.
+- Cross-platform build for Linux, Windows, Wine, and WebAssembly using Emscripten.
 
-This project implements specialized functionality related to firepool.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for firepool
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
+## Project Structure
 
 ### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
+- C/C++ Compiler and Debugger (GCC, Clang)
 - Make utility
 - Standard development tools
+- Libraries needed in specific projects:
+  - X11 for Linux GUI (if not cross-compiling to Windows with Wine)
+  - WINAPI for Windows GUI
+  - Emscripten for WebAssembly
 
-### Build Steps
-
-1. Navigate to project directory:
-```bash
-cd Gui_FirePool
-```
-
-2. Build the project:
-```bash
-make -f Makefile.(os) all
-```
-
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
-```
-
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
-```
-
-### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
-```
-
-## Running the Project
-
-Execute the compiled binary:
+## Build & Run
+### Linux Build and Execution
+To build the project on Linux, execute the following commands:
 
 ```bash
-./build/Main(.exe)
+cd <Project>
+make -f Makefile.linux all
+make -f Makefile.linux exe
 ```
 
-Or using make:
+This will compile the source code into an executable named `Main` located in the `build/` directory. You can run it directly with:
+
 ```bash
-make -f Makefile.(os) exe
+./build/Main
 ```
 
-## Project Organization
+### Windows Build and Execution
+To build the project on Windows, execute the following commands:
 
-```
-Gui_FirePool/
-├── src/
-│   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
-└── README.md           # This file
+```bash
+cd <Project>
+make -f Makefile.windows all
+make -f Makefile.windows exe
 ```
 
-## Technical Details
+This will compile the source code into an executable named `Main.exe` located in the `build/` directory. You can run it directly with:
 
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
+```bash
+start build\Main.exe
+```
 
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
+### Wine Build and Execution
+To build the project for Windows using Wine on Linux, execute the following commands:
 
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
+```bash
+cd <Project>
+make -f Makefile.wine all
+make -f Makefile.wine exe
+```
 
-## Development Notes
+This will compile the source code into an executable named `Main.exe` located in the `build/` directory. You can run it with Wine by executing:
 
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
+```bash
+WINEPREFIX=~/wine64 WINEARCH=win64 wine build/Main.exe
+```
 
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
+### WebAssembly Build and Execution
+To build the project for WebAssembly using Emscripten, execute the following commands:
 
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
+```bash
+cd <Project>
+make -f Makefile.web all
+make -f Makefile.web exe
+```
 
-## Troubleshooting
+This will compile the source code into a web application that can be served via an HTTP server. You can run it by opening `build/index.html` in your web browser.
 
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
+## Build Options
 
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
+- **Build Output**: 
+  ```bash
+  make -f Makefile.(os) all  
+  ```
 
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
+- **Build and Execute Output**:
+  ```bash
+  make -f Makefile.(os) do     
+  ```
+  For example, `make -f Makefile.linux do` for Linux.
 
-## Future Improvements
+- **Clean Rebuild**:
+  ```bash
+  make -f Makefile.(os) clean  
+  ```
 
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
+- **Clean Libs and Build** (if there are `./bin` and `./libs` directories):
+  ```bash
+  make -f Makefile.(os) cleanlib  
+  make -f Makefile.(os) lib    
+  ```
 
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+- **Exe Output**:
+  ```bash
+  make -f Makefile.(os) exe      
+  ```
+  For example, `make -f Makefile.linux exe` for Linux.
